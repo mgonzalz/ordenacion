@@ -1,6 +1,7 @@
 # Realización de UML Y CÓDIGO JUNTO CON DIAGRAMAS DE FLUJO
 
 Link repositorio: https://github.com/mgonzalz/ordenacion.git
+
 Integrantes: Lucia Mielgo, Jone Vega del Río, María González
 
 1. Ordenación por inserción dicotómica
