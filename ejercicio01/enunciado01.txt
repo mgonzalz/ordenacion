@@ -21,25 +21,24 @@ mitad: ENTERO
 
 precondicion:
 limite_inferior < limite_superior
-mitad = t[]
+mitad = t[limite_inferior] + t[limite_superior] / 2
 
 
 realización:
-elemento: t[0]
-
 
 Función insercion_binaria(lista)
     Para i desde 1 hasta longitud(lista)-1
         clave = lista[i]
-        // Encuentra la posición correcta para insertar la clave en la lista ordenada
+        #Encuentra la posición correcta para insertar la clave en la lista ordenada
         posición = busqueda_binaria(lista, clave, 0, i-1)
-        // Desplaza los elementos para hacer espacio para la clave en la posición correcta
+        #Desplaza los elementos para hacer espacio para la clave en la posición correcta
         Para j desde i hasta posición+1 con incremento -1
             lista[j] = lista[j-1]
         lista[posición] = clave
     Fin Para
     Devolver lista
 Fin Función
+
 
 Función busqueda_binaria(lista, clave, inicio, fin)
     Si inicio >= fin entonces
@@ -57,4 +56,11 @@ Función busqueda_binaria(lista, clave, inicio, fin)
         Devolver mitad
     Fin Si
 Fin Función
+
+postcondición:
+t[0] <= t[1] <= ... <= t[n-1]
+
+
+salida:
+t: TABLA[T --> COMPARABLE] #ordenada en orden creciente
 
