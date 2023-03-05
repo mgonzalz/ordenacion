@@ -8,16 +8,26 @@
 
 #Está claro que no se pueden cumplir todas las restricciones. En este caso, no hay ordenación de las tareas. El algoritmo deberá tratar este caso correctamente.
 
-n = int(input("Introduce el número de tareas: "))
-restricciones = []
-for i in range(n):
-    restricciones.append([])
-for i in range(n):
-    for j in range(n):
-        if i != j:
-            print("¿La tarea", i+1, "precede a la tarea", j+1, "?")
-            if input() == "si":
-                restricciones[i].append(j)
-print(restricciones)
 
+
+def ordenacion_topologica(n, restricciones):
+    # Inicializar diccionario de restricciones entrantes
+    restr_ent = {i: 0 for i in range(1, n+1)}
+    for i, j in restricciones:
+        restr_ent[j] += 1
+    cola = [i for i in range(1, n+1) if restr_ent[i] == 0]
+    orden = []
+    while cola:
+        tarea = cola.pop(0)
+        orden.append(tarea)
+        for i, j in restricciones:
+            if i == tarea:
+                restr_ent[j] -= 1
+                if restr_ent[j] == 0:
+                    cola.append(j)
+    if len(orden) < n:
+        return None
+    else:
+        return orden
+    
 
