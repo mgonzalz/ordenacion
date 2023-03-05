@@ -1,0 +1,45 @@
+algoritmo_explorar
+    # Hacer subir cada componente desde 't[inicio .. fin]' hasta el final de la serie más grande de la que es el max
+
+Entrada
+    t: TABLA[T -> COMPARABLE]
+    inicio: ENTERO
+    fin: ENTERO
+    paso: ENTERO
+    ordenado: BOOLEANO
+
+Precondición
+    inicio ≤ fin
+    1 ≤ paso ≤ cociente(fin - inicio + 1, 2)
+    está_definido(t)
+    índice_válido(t, inicio)
+    índice_válido(t, fin)
+
+Variable
+    i: ENTERO
+
+Inicialización
+    i <--- inicio
+    ordenado <--- VERDADERO
+   hasta que
+    i > fin - paso
+    invariante
+        i > inicio => está_explorado(i, inicio, i - 1)
+    variante de control
+        fin - paso - i + 1
+repetir
+    si
+        t[i] > t[i + paso]
+    entonces
+        intercambiar(t[i], t[i + paso])
+        ordenado <--- FALSO
+    fin si
+    i <--- i + 1
+fin repetir
+
+Poscondición
+    está_explorado(t, inicio, fin)
+
+
+
+fin algoritmo_explorar
